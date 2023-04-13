@@ -1,0 +1,19 @@
+<!-- <h2>Seleccione una cosa:</h2>
+<select [(ngModel)]="selectedThing">
+  <option *ngFor="let thing of things" [value]="thing">{{ thing }}</option>
+</select>
+
+<h2>Anota tu nombre:</h2>
+<input [(ngModel)]="userName">
+
+<button (click)="submit()">Enviar</button> -->
+
+
+<div cdkDropList (cdkDropListDropped)="drop($event)">
+  <!-- Aquí van los elementos arrastrables -->
+</div>
+
+<div cdkDrag>Elemento 1</div>
+<div cdkDrag>Elemento 2</div>
+<div cdkDrag>Elemento 3</div>
+<router-outlet></router-outlet>
