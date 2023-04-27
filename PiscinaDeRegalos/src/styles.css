@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+
+body{
+
+    background: no-repeat center/30% url("../src/assets/unopng.png");
+    /* background-position: left; */
+    background-position: right 20% bottom 55%;
+
+    padding: 25px;
+    font: oblique bold 120% cursive;
+
+}

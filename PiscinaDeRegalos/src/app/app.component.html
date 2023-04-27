@@ -1,19 +1,31 @@
-<!-- <h2>Seleccione una cosa:</h2>
-<select [(ngModel)]="selectedThing">
-  <option *ngFor="let thing of things" [value]="thing">{{ thing }}</option>
-</select>
-
-<h2>Anota tu nombre:</h2>
-<input [(ngModel)]="userName">
-
-<button (click)="submit()">Enviar</button> -->
 
 
-<div cdkDropList (cdkDropListDropped)="drop($event)">
-  <!-- Aquí van los elementos arrastrables -->
+<div cdkDropListGroup>
+  <div class="example-container">
+    <h2>Regalos Disponibles </h2>
+
+    <div
+      cdkDropList
+      [cdkDropListData]="todo"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of todo"  cdkDrag>{{item}}</div>
+    </div>
+  </div>
+
+  <div class="example-container">
+    <h2>Regalo Elegido</h2>
+
+    <div
+      cdkDropList
+      [cdkDropListData]="done"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of done" >{{item}} <a target="_blank" href="https://www.mercadolibre.com.co/">Donde Comparlo</a> </div>
+    </div>
+  </div>
 </div>
 
-<div cdkDrag>Elemento 1</div>
-<div cdkDrag>Elemento 2</div>
-<div cdkDrag>Elemento 3</div>
+
+
 <router-outlet></router-outlet>

@@ -8,6 +8,9 @@ import { AppComponent } from './app.component';
 import { DndModule } from 'ngx-drag-drop';
 import { HttpClientModule } from '@angular/common/http';
 
+import {DragDropModule} from '@angular/cdk/drag-drop';
+
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //import { FlexLayoutModule } from '@angular/flex-layout';
 // import { NgxDragDropModule } from 'ngx-drag-drop';
@@ -18,7 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   imports: [
     FormsModule,
-    
+    DragDropModule,
     //NgxDragDropModule,
     // FlexLayoutModule ,
     BrowserModule,

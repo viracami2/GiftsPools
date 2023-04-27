@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 
 @Component({
@@ -13,6 +13,44 @@ export class AppComponent {
   items = ['Elemento 1', 'Elemento 2', 'Elemento 3'];
 
 
+  newItems = [
+    'Item 5',
+    'Item 6',
+    'Item 7',
+  ]
+  todo = ['Paños etapa 2','Paños etapa 2','Kit de lavado','Bodys', 'Paños etapa 1', 'Paños etapa 1', 'Paños etapa 2'];
+
+done = ['Monopatin -Vic'];
+  // dropped(event: CdkDragDrop<string[]>) {
+  //   if (event.item.data === 'Try to move me') {
+  //     console.log("this isn't happening today");
+  //     return;
+  //   }
+  
+
+
+  drop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      var person = prompt("Digita el nombre", "");
+    
+      if ( person != null   ) {
+        if  ( person != ''){
+          event.previousContainer.data[event.previousIndex]
+          = event.previousContainer.data[event.previousIndex] + " - "+person;
+          
+          transferArrayItem(
+            event.previousContainer.data,
+            event.container.data,
+            event.previousIndex,
+            event.currentIndex,
+            );
+        }}
+    }
+  }
+
+
   selectedThing = '';
   userName = '';
 
@@ -20,22 +58,5 @@ export class AppComponent {
     console.log('La cosa seleccionada es:', this.selectedThing);
     console.log('El nombre del usuario es:', this.userName);
   }
-
-  // drop(event: CdkDragDrop<string[]>) {
-  //   moveItemInArray(this.items, event.previousIndex, event.currentIndex);
-  // }
-
-  drop(event: CdkDragDrop<string[]>) {
-    // Obtenemos información sobre el elemento arrastrado
-    const item = event.item.data;
-    
-    // Obtenemos información sobre el destino del elemento arrastrado
-    const targetList = event.container.data;
-    const targetIndex = event.currentIndex;
-    
-    // Realizamos las operaciones necesarias con la información obtenida
-    // ...
-  }
-  
 
 }
