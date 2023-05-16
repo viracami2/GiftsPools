@@ -1,0 +1,11 @@
+<form action="" [formGroup]="imagenForm" >
+  <section class="form-register">
+    <div style="text-align: center; padding: 5px;">
+      
+    </div>
+    <h4>Nuevo Regalo</h4>
+    <!-- <input class="controls" type="text" formControlName="nombreInvitado" placeholder="Nombre"> -->
+    <input class="controls" type="text" formControlName="regalo" placeholder="Regalo">    
+    <input class="buttons" type="submit" (click)=CrearImagen($event) value="Guardar">
+  </section>
+</form>

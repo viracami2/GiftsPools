@@ -21,10 +21,14 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
 //import { FlexLayoutModule } from '@angular/flex-layout';
 // import { NgxDragDropModule } from 'ngx-drag-drop';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { AgregarRegaloComponent } from './agregar-regalo/agregar-regalo.component';
+import { ListarRegalosComponent } from './listar-regalos/listar-regalos.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AgregarRegaloComponent,
+    ListarRegalosComponent
   ],
   imports: [
     FormsModule,
