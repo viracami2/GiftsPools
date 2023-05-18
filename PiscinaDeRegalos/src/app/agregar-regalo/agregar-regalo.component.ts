@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { PruebaModel } from '../models/prueba-model';
-import { CollectionReference, DocumentData, Firestore, addDoc, collection } from '@angular/fire/firestore';
+import { CollectionReference, DocumentData, Firestore, addDoc, collection, deleteDoc, doc } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-agregar-regalo',
@@ -39,13 +39,28 @@ export class AgregarRegaloComponent implements OnInit {
 
     this._imagen.nombreInvitado = this.imagenForm.controls.nombreInvitado.value ?? '';
     this._imagen.regalo = this.imagenForm.controls.regalo.value ?? '';    
-
+    
      await addDoc(this.coleccionV, {
        regalo :this._imagen.regalo,
       nombreInvitado :'',
      });
 
   }
+
+
+  async EliminarImagen(event: Event)
+  {
+    event.preventDefault();
+
+    this._imagen.nombreInvitado = this.imagenForm.controls.nombreInvitado.value ?? '';
+    this._imagen.regalo = this.imagenForm.controls.regalo.value ?? '';    
+    
+    
+    //const pokemonDocumentReference = doc(this.firestore, `pokemon/${id}`);
+     //deleteDoc(pokemonDocumentReference);
+
+  }
+
 
 
 

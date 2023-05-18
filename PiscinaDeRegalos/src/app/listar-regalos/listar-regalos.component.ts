@@ -1,7 +1,7 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit, inject } from '@angular/core';
 import { AngularFirestoreDocument } from '@angular/fire/compat/firestore';
-import { Firestore, collection, collectionData } from '@angular/fire/firestore';
+import { Firestore, collection, collectionData, doc, updateDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { PruebaModel } from '../models/prueba-model';
 
@@ -13,34 +13,39 @@ import { PruebaModel } from '../models/prueba-model';
 export class ListarRegalosComponent implements OnInit {
 
 
-  private itemDoc: AngularFirestoreDocument<PruebaModel> | undefined;
-  //private item: Observable<PruebaModel> ;
+  
 
   private firestore: Firestore = inject(Firestore); // inject Cloud Firestore
     users$: Observable<PruebaModel[]>;
 
+    
+    public todo  : PruebaModel []  = [];
 
-constructor(/*private store : AngularFirestore*/){
+    public done : PruebaModel []  = [];
+
+    
+constructor(){
  
   
-  const userProfileCollection = collection(this.firestore, 'VictorEsteban');
+  const userProfileCollection = collection(this.firestore,
+     'VictorEsteban');
 
-  // get documents (data) from the collection using collectionData
-  this.users$ = collectionData(userProfileCollection) as Observable<PruebaModel[]>;
+  this.users$ = collectionData(userProfileCollection
+    , {
+      idField: 'id',
+    }) as Observable<PruebaModel[]>;
   
-
   this.users$.forEach(element => {
     this.todo = [];
     this.done = [];
+    console.log(element);
+
     element.forEach(ele =>
       {          
         if(ele.nombreInvitado  == ''){
-          this.todo.push(ele.regalo);        
+          this.todo.push(ele);        
         }else{
-          this.done.push(ele.regalo+" "+ele.nombreInvitado  );        
-
-          
-
+          this.done.push(ele);        
         }
       } 
       );
@@ -48,13 +53,6 @@ constructor(/*private store : AngularFirestore*/){
   });
   var result = this.users$.subscribe();
   
-  
-
-console.log(
-  result
-);
-  //debugger;
-
 
 }
 
@@ -64,21 +62,11 @@ ngOnInit(){
 }
 
 
-  title = 'PiscinaDeRegalos';
-  things = ['paños humedos'];
-  items = ['Elemento 1'];
 
 
-  newItems = [
-    'Item 5',
-    
-  ]
-  todo = ['Paños 2','Paños etapa 2'];
-
-  done = ['Monopatin -Vic'];
 
 
-  drop(event: CdkDragDrop<string[]>) {
+  drop(event: CdkDragDrop<PruebaModel[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -86,15 +74,32 @@ ngOnInit(){
 
       if (person != null) {
         if (person != '') {
-          event.previousContainer.data[event.previousIndex]
-            = event.previousContainer.data[event.previousIndex] + " - " + person;
 
+            //aqui se tiene que mandar a actualizar firebase
+
+
+          event.previousContainer.data[event.previousIndex].nombreInvitado
+            = person;
+
+
+            var codigo =event.previousContainer.data[event.previousIndex].id;
+            
+
+            const pokemonDocumentReference = doc(
+              this.firestore,
+              `VictorEsteban/${codigo}`
+            );
+
+
+          updateDoc(pokemonDocumentReference, { ...event.previousContainer.data[event.previousIndex] });
           transferArrayItem(
             event.previousContainer.data,
             event.container.data,
             event.previousIndex,
             event.currentIndex,
           );
+
+
         }
       }
     }
@@ -110,3 +115,5 @@ ngOnInit(){
   }
 
 }
+
+
