@@ -75,9 +75,9 @@ drop(event: CdkDragDrop<PruebaModel[]>) {
         event.previousContainer.data[event.previousIndex].nombreInvitado
           = person;
 
-
           var codigo =event.previousContainer.data[event.previousIndex].id;
           
+          this.done.push(event.previousContainer.data[event.previousIndex]);
 
           const pokemonDocumentReference = doc(
             this.firestore,
