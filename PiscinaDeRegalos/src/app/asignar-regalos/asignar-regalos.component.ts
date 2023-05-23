@@ -35,7 +35,7 @@ constructor(){
   
   this.users$.forEach(element => {
     this.todo = [];
-    this.done = [];
+    //this.done = [];
    console.log(element);
 
     element.forEach(ele =>
@@ -77,13 +77,13 @@ drop(event: CdkDragDrop<PruebaModel[]>) {
 
           var codigo =event.previousContainer.data[event.previousIndex].id;
           
-          this.done.push(event.previousContainer.data[event.previousIndex]);
-
+          
           const pokemonDocumentReference = doc(
             this.firestore,
             `VictorEsteban/${codigo}`
-          );
-
+            );
+            
+            //this.done.push(event.previousContainer.data[event.previousIndex]);
 
         updateDoc(pokemonDocumentReference, { ...event.previousContainer.data[event.previousIndex] });
         transferArrayItem(
