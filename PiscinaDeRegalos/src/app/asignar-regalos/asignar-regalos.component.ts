@@ -14,7 +14,7 @@ export class AsignarRegalosComponent implements OnInit {
 
 
   private firestore: Firestore = inject(Firestore); // inject Cloud Firestore
-    //users$: Observable<PruebaModel[]>;
+    users$: Observable<PruebaModel[]>;
 
     
     public todo  : PruebaModel []  = [];
@@ -25,30 +25,30 @@ export class AsignarRegalosComponent implements OnInit {
 constructor(){
  
   
-  // const userProfileCollection = collection(this.firestore,
-  //    'VictorEsteban');
+  const userProfileCollection = collection(this.firestore,
+     'VictorEsteban');
 
-  // this.users$ = collectionData(userProfileCollection
-  //   , {
-  //     idField: 'id',
-  //   }) as Observable<PruebaModel[]>;
+  this.users$ = collectionData(userProfileCollection
+    , {
+      idField: 'id',
+    }) as Observable<PruebaModel[]>;
   
-  // this.users$.forEach(element => {
-  //   this.todo = [];
-  //   this.done = [];
-//    console.log(element);
+  this.users$.forEach(element => {
+    this.todo = [];
+    this.done = [];
+   console.log(element);
 
-  //   element.forEach(ele =>
-  //     {          
-  //       if(ele.nombreInvitado  == ''){
-  //         this.todo.push(ele);        
-  //       }else{
-  //         //this.done.push(ele);        
-  //       }
-  //     } 
-  //     );
+    element.forEach(ele =>
+      {          
+        if(ele.nombreInvitado  == ''){
+          this.todo.push(ele);        
+        }else{
+          //this.done.push(ele);        
+        }
+      } 
+      );
 
-  // });
+  });
   //var result = this.users$.subscribe();
   
 
@@ -60,45 +60,41 @@ ngOnInit(){
 }
 
 
+drop(event: CdkDragDrop<PruebaModel[]>) {
+  if (event.previousContainer === event.container) {
+    moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+  } else {
+    var person = prompt("Digita el nombre", "");
+
+    if (person != null) {
+      if (person != '') {
+
+          //aqui se tiene que mandar a actualizar firebase
 
 
+        event.previousContainer.data[event.previousIndex].nombreInvitado
+          = person;
 
 
-  drop(event: CdkDragDrop<PruebaModel[]>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      var person = prompt("Digita el nombre", "");
+          var codigo =event.previousContainer.data[event.previousIndex].id;
+          
 
-      if (person != null) {
-        if (person != '') {
-
-            //aqui se tiene que mandar a actualizar firebase
-
-
-          event.previousContainer.data[event.previousIndex].nombreInvitado
-            = person;
-
-
-            var codigo =event.previousContainer.data[event.previousIndex].id;
-            
-
-            const pokemonDocumentReference = doc(
-              this.firestore,
-              `VictorEsteban/${codigo}`
-            );
-
-
-          updateDoc(pokemonDocumentReference, { ...event.previousContainer.data[event.previousIndex] });
-          transferArrayItem(
-            event.previousContainer.data,
-            event.container.data,
-            event.previousIndex,
-            event.currentIndex,
+          const pokemonDocumentReference = doc(
+            this.firestore,
+            `VictorEsteban/${codigo}`
           );
 
 
-        }
+        updateDoc(pokemonDocumentReference, { ...event.previousContainer.data[event.previousIndex] });
+        transferArrayItem(
+          event.previousContainer.data,
+          event.container.data,
+          event.previousIndex,
+          event.currentIndex,
+        );
+
+
+      }
       }
     }
   }
