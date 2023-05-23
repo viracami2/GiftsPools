@@ -23,12 +23,15 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { AgregarRegaloComponent } from './agregar-regalo/agregar-regalo.component';
 import { ListarRegalosComponent } from './listar-regalos/listar-regalos.component';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { AsignarRegalosComponent } from './asignar-regalos/asignar-regalos.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AgregarRegaloComponent,
-    ListarRegalosComponent
+    ListarRegalosComponent,
+    AsignarRegalosComponent
   ],
   imports: [
     FormsModule,
@@ -37,6 +40,9 @@ import { ListarRegalosComponent } from './listar-regalos/listar-regalos.componen
     // FlexLayoutModule ,
     BrowserModule,
     AppRoutingModule,
+
+    MatTableModule,
+    //MatTableDataSource,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,

@@ -1,0 +1,28 @@
+<div cdkDropListGroup>
+    <div class="example-container">
+      <h2>Regalos Disponibles </h2>
+  
+      <div
+        cdkDropList
+        [cdkDropListData]="todo"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of todo"  cdkDrag>{{item.regalo}} 
+            <a href="{{item.url}}" target="_blank">Donde Conseguirlo </a>
+
+        </div>
+      </div>
+    </div>
+  
+    <div class="example-container">
+      <h2>Regalo Elegido</h2>
+  
+      <div
+        cdkDropList
+        [cdkDropListData]="done"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let item of done" >{{item.regalo}}  {{item.nombreInvitado}} <a target="_blank" href="https://www.mercadolibre.com.co/">Donde Comparlo</a> </div>
+      </div>
+    </div>
+  </div>

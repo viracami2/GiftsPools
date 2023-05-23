@@ -1,27 +1,22 @@
-<div cdkDropListGroup>
-    <div class="example-container">
-      <h2>Regalos Disponibles </h2>
-  
-      <div
-        cdkDropList
-        [cdkDropListData]="todo"
-        class="example-list"
-        (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of todo"  cdkDrag>{{item.regalo}}</div>
-      </div>
-    </div>
-  
-    <div class="example-container">
-      <h2>Regalo Elegido</h2>
-  
-      <div
-        cdkDropList
-        [cdkDropListData]="done"
-        class="example-list"
-        (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of done" >{{item.regalo}}  {{item.nombreInvitado}} <a target="_blank" href="https://www.mercadolibre.com.co/">Donde Comparlo</a> </div>
-      </div>
-    </div>
-  </div>
-  
-  
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <!-- Position Column -->
+  <ng-container matColumnDef="nombreInvitado">
+    <mat-header-cell *matHeaderCellDef> Noombre Invitado </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.nombreInvitado}} </mat-cell>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="regalo">
+    <mat-header-cell *matHeaderCellDef> Regalo </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.regalo}} </mat-cell>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="url">
+    <mat-header-cell *matHeaderCellDef> URL </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.url}} </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
