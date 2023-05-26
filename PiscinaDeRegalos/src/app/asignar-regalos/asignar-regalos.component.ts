@@ -18,8 +18,8 @@ export class AsignarRegalosComponent implements OnInit {
 
     
     public todo  : PruebaModel []  = [];
-
     public done : PruebaModel []  = [];
+
 
     
 constructor(){
@@ -35,8 +35,6 @@ constructor(){
   
   this.users$.forEach(element => {
     this.todo = [];
-    //this.done = [];
-   console.log(element);
 
     element.forEach(ele =>
       {          
@@ -49,8 +47,7 @@ constructor(){
       );
 
   });
-  //var result = this.users$.subscribe();
-  
+    
 
 }
 
@@ -69,9 +66,6 @@ drop(event: CdkDragDrop<PruebaModel[]>) {
     if (person != null) {
       if (person != '') {
 
-          //aqui se tiene que mandar a actualizar firebase
-
-
         event.previousContainer.data[event.previousIndex].nombreInvitado
           = person;
 
@@ -82,9 +76,7 @@ drop(event: CdkDragDrop<PruebaModel[]>) {
             this.firestore,
             `VictorEsteban/${codigo}`
             );
-            
-            //this.done.push(event.previousContainer.data[event.previousIndex]);
-
+          
         updateDoc(pokemonDocumentReference, { ...event.previousContainer.data[event.previousIndex] });
         transferArrayItem(
           event.previousContainer.data,
@@ -92,14 +84,8 @@ drop(event: CdkDragDrop<PruebaModel[]>) {
           event.previousIndex,
           event.currentIndex,
         );
-
-
       }
       }
     }
   }
-
-
-
-
 }

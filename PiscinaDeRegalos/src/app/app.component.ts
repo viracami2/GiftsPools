@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output, inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +9,14 @@ import { Component, EventEmitter, Output, inject } from '@angular/core';
 })
 export class AppComponent {
 
+  constructor(
+    private router : Router) {
+     }
+
+  aHome(){    
+     this.router.navigate(['/']);
+   }
+
+   
 
 }

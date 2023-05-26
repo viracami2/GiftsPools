@@ -30,7 +30,7 @@ import { AngularMaterialModule } from './AngularMaterialModule';
     AsignarRegalosComponent
   ],
   imports: [
-    CommonModule,
+    //CommonModule,
     FormsModule,
     DragDropModule,    
     BrowserModule,

@@ -36,20 +36,14 @@ export class AgregarRegaloComponent  implements OnInit {
           }
         );  
         this.dataSource.data = this.todo;
-        
-         
       });
 
-
-    // this.dataSource.data = this.todo;
   }
   
   private coleccionV : CollectionReference<DocumentData> ;// | undefined;
   private firestore: Firestore = inject(Firestore); // inject Cloud Firestore
   users$: Observable<PruebaModel[]>;
 
-  
-  //dataSource = new MatTableDataSource<PruebaModel>();
   dataSource = new MatTableDataSource<PruebaModel>();
 
 

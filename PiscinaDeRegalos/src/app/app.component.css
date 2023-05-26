@@ -13,3 +13,8 @@
   .spacer{
     flex: 1 1 auto;
   }
+
+img{
+
+  margin: 30px;
+}
