@@ -113,7 +113,7 @@ export function chartOptions() {
   Chart.scaleService.updateScaleDefaults('linear', {
     gridLines: {
       borderDash: [2],
-      borderDashOffset: [2],
+      //borderDashOffset: [2],
       color: (mode == 'dark') ? colors.gray[900] : colors.gray[300],
       drawBorder: false,
       drawTicks: false,
@@ -121,8 +121,8 @@ export function chartOptions() {
       lineWidth: 1,
       zeroLineWidth: 0,
       zeroLineColor: (mode == 'dark') ? colors.gray[900] : colors.gray[300],
-      zeroLineBorderDash: [2],
-      zeroLineBorderDashOffset: [2]
+      zeroLineBorderDash: [2]
+     //, zeroLineBorderDashOffset: 2
     },
     ticks: {
       beginAtZero: true,
