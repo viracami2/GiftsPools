@@ -14,12 +14,16 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
-import { AgregarRegaloComponent } from './agregar-regalo/agregar-regalo.component';
-import { ListarRegalosComponent } from './listar-regalos/listar-regalos.component';
-import { AsignarRegalosComponent } from './asignar-regalos/asignar-regalos.component';
+import { AgregarRegaloComponent } from './VictorEsteban/agregar-regalo/agregar-regalo.component';
+import { ListarRegalosComponent } from './VictorEsteban/listar-regalos/listar-regalos.component';
+import { AsignarRegalosComponent } from './VictorEsteban/asignar-regalos/asignar-regalos.component';
 
 import { CommonModule } from '@angular/common';
 import { AngularMaterialModule } from './AngularMaterialModule';
+import { AdminLayoutComponent } from './Game/layouts/admin-layout/admin-layout.component';
+import { AuthLayoutComponent } from './Game/layouts/auth-layout/auth-layout.component';
+import { ComponentsModule } from './Game/components/components.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -27,7 +31,10 @@ import { AngularMaterialModule } from './AngularMaterialModule';
     AppComponent,
     AgregarRegaloComponent,
     ListarRegalosComponent,
-    AsignarRegalosComponent
+    AsignarRegalosComponent,
+    AdminLayoutComponent,
+    AuthLayoutComponent,
+    
   ],
   imports: [
     //CommonModule,
@@ -35,20 +42,23 @@ import { AngularMaterialModule } from './AngularMaterialModule';
     DragDropModule,    
     BrowserModule,
     AppRoutingModule,
-
-
     AngularMaterialModule,
+
+    NgbModule,
+
 
     ReactiveFormsModule,
     HttpClientModule,
     
+    ComponentsModule,
+
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     // provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage()),    
   ],
-  providers: [
+    providers: [
     { provide: FIREBASE_OPTIONS, useValue: environment.firebase }
     
   ],
