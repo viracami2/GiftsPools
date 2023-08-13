@@ -10,7 +10,7 @@ import { AuthLayoutComponent } from './Game/layouts/auth-layout/auth-layout.comp
 const routes: Routes = [
   { path: 'regalo', component: AgregarRegaloComponent },
   { path: 'lista', component: ListarRegalosComponent },
- // { path: '', component: AsignarRegalosComponent },
+  { path: 'asignar', component: AsignarRegalosComponent },
   
   // { path: '**', pathMatch: 'full',   redirectTo: '/', },
   // { path: '',   redirectTo: '/',  },
